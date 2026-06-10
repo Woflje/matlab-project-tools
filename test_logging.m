@@ -20,4 +20,9 @@ ll(1,'This is logged but NOT printed info.\n');
 ll(2,'This is logged but NOT printed detailed info.\n');
 ll(3,'This is a logged but NOT printed debug message.\n');
 
+someStruct = struct();
+someStruct.somefield = 'Something';
+pl('Printing a struct:\n')
+plStruct(someStruct,'someStruct');
+
 stop_logging();
