@@ -15,7 +15,7 @@ function [shouldLog, args] = should_log(varargin)
                 isfield(settings, 'logging') && isstruct(settings.logging) && ...
                 isfield(settings.logging, 'level') && ~isempty(settings.logging.level)
 
-            shouldLog = settings.logging.level <= loglevel;
+            shouldLog = settings.logging.level >= loglevel;
         end
     end
 end
