@@ -11,16 +11,22 @@ function plchapter(varargin)
 	%
 	% Author: Wolf van der Hert
 
-    titleText = sprintf(varargin{:});
+	[shouldLog, args] = should_log(varargin{:});
 
-	side_margin = 6;
+	if shouldLog
+		titleText = sprintf(args{:});
 
-    lineText = repmat('=', 1, strlength(titleText) + 2 + 2*side_margin);
+		side_margin = 6;
 
-	sideSpaces = repmat(' ', 1, side_margin);
+		lineText = repmat('=', 1, strlength(titleText) + 2 + 2*side_margin);
 
-    pl('\n%s\n', lineText);
-    pl('=%s%s%s=\n', sideSpaces, titleText, sideSpaces);
-    pl('%s\n\n', lineText);
+		sideSpaces = repmat(' ', 1, side_margin);
+
+		pl('\n%s\n', lineText);
+		pl('=%s%s%s=\n', sideSpaces, titleText, sideSpaces);
+		pl('%s\n\n', lineText);
+	end
+
+    
 
 end

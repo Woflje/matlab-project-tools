@@ -3,8 +3,12 @@ function pl(varargin)
 	%
 	% Author: Wolf van der Hert
 
-    fprintf(varargin{:});
+	[shouldLog, args] = should_log(varargin{:});
 
-    ll(varargin{:});
+	
+    if shouldLog
+        fprintf(args{:});
+        ll(args{:});
+    end
 
 end

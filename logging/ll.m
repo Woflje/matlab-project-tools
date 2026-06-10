@@ -3,10 +3,13 @@ function ll(varargin)
     %
     % Author: Wolf van der Hert
 
+
     global LOG_FID
 
-    if ~isempty(LOG_FID) && LOG_FID ~= -1
-        fprintf(LOG_FID, varargin{:});
+    [shouldLog, args] = should_log(varargin{:});
+
+    if shouldLog && ~isempty(LOG_FID) && LOG_FID ~= -1
+        fprintf(LOG_FID, args{:});
         fseek(LOG_FID, 0, 'cof');
     end
 end
