@@ -1,12 +1,23 @@
-function elapsed = pltoc(name)
+function elapsed = pltoc(varargin)
 	% Print log and stop a named timer
 	%
-	% Example:
+	% Examples:
 	%   pltoc('name')
+	%   pltoc('debug', 'name')
 	%
 	% Author: Wolf van der Hert
 
     global PL_TIMERS
+
+    if nargin == 1
+        logArgs = {};
+        name = varargin{1};
+    elseif nargin == 2
+        logArgs = {varargin{1}};
+        name = varargin{2};
+    else
+        error('pltoc expects name or logLevel, name.');
+    end
 
     name = char(string(name));
 
@@ -18,6 +29,5 @@ function elapsed = pltoc(name)
 
     elapsed = toc(PL_TIMERS(name));
 
-    pl('[timer] Finished: %s in %s\n', name, format_seconds(elapsed));
-
+    pl(logArgs{:}, '[timer] Finished: %s in %s\n', name, format_seconds(elapsed));
 end
