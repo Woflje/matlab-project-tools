@@ -1,5 +1,10 @@
-function export_all_figures(export_dir)
-	FigList = findobj(allchild(0), 'flat', 'Type', 'figure');
+function exported_files = export_all_figures(export_dir, FigList)
+    % Save selected figures as FIG and JPG files.
+
+    if nargin < 2
+	    FigList = findobj(allchild(0), 'flat', 'Type', 'figure');
+    end
+    exported_files = strings(numel(FigList), 2);
 
     pl('Exporting figures to %s...\n', export_dir);
     mkdir(export_dir);
@@ -27,7 +32,21 @@ function export_all_figures(export_dir)
         % Make filename safe
         FigName = regexprep(FigName, '[^\w\s-]', '');
         FigName = regexprep(FigName, '\s+', '_');
+        if strlength(FigName) == 0
+            FigName = "figure_" + iFig;
+        end
 
-        savefig(FigHandle, fullfile(export_dir, FigName + ".fig"));
-        saveas(FigHandle, fullfile(export_dir, FigName + ".jpg"));
+        baseName = FigName;
+        suffix = 2;
+        while isfile(fullfile(export_dir, FigName + ".fig")) || ...
+                isfile(fullfile(export_dir, FigName + ".jpg"))
+            FigName = baseName + "_" + suffix;
+            suffix = suffix + 1;
+        end
+
+        exported_files(iFig, 1) = fullfile(export_dir, FigName + ".fig");
+        exported_files(iFig, 2) = fullfile(export_dir, FigName + ".jpg");
+        savefig(FigHandle, exported_files(iFig, 1));
+        saveas(FigHandle, exported_files(iFig, 2));
     end
+end

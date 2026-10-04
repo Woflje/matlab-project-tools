@@ -1,7 +1,5 @@
 function stop_logging()
 	% Stops logging by closing the log file and resetting the global log file identifier.
-	%
-	% Author: Wolf van der Hert
 
     global LOG_FID
 

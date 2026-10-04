@@ -4,8 +4,6 @@ function elapsed = pltoc(varargin)
 	% Examples:
 	%   pltoc('name')
 	%   pltoc('debug', 'name')
-	%
-	% Author: Wolf van der Hert
 
     global PL_TIMERS
 

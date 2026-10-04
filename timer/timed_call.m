@@ -6,8 +6,6 @@ function varargout = timed_call(varargin)
 	%   timed_call(logLevel, timerName, fn, ...)
 	%
 	% pltoc is guaranteed through onCleanup.
-	%
-	% Author: Wolf van der Hert
 
     if nargin < 2
         error('timed_call requires at least timerName and fn.');

@@ -1,7 +1,5 @@
 function el(varargin)
     % el - Error and Log - logs an error message, then throws it
-    %
-    % Author: Wolf van der Hert
 
     if nargin == 0
         error('el:NoMessage', 'No error message provided.');

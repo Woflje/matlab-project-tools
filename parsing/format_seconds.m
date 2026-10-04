@@ -1,5 +1,4 @@
 function txt = format_seconds(seconds)
-	% Author: Wolf van der Hert
 
     if seconds < 60
         txt = sprintf('%.3f s', seconds);

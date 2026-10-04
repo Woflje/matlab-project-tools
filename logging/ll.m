@@ -1,8 +1,5 @@
 function ll(varargin)
     % ll - Log only - logs to a file without printing to the console
-    %
-    % Author: Wolf van der Hert
-
 
     global LOG_FID
 

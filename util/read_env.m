@@ -1,10 +1,9 @@
 function value = read_env(key, defaultValue, envFile)
-	%READ_ENV Read value from .env file, OS env, or fallback default
+	% Read value from .env file, OS env, or fallback default
 	%
 	% Usage:
 	%   data_dir = read_env("data_dir", "data")
 	%   data_dir = read_env("data_dir", "data", ".env.local")
-	% Author: Wolf van der Hert
 
     if nargin < 3
         envFile = ".env";

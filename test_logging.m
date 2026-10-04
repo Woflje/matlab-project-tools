@@ -1,5 +1,4 @@
-addpath('util');
-add_relative_paths();
+addpath('util', 'logging');
 
 global settings
 

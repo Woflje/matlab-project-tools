@@ -4,8 +4,6 @@ function pltic(varargin)
 	% Examples:
 	%   pltic('name')
 	%   pltic('debug', 'name')
-	%
-	% Author: Wolf van der Hert
 
     global PL_TIMERS
 

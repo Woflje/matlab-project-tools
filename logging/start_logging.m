@@ -1,4 +1,5 @@
-function start_logging(logs_parent_dir)
+function log_file = start_logging(logs_parent_dir, log_name)
+    % Start a uniquely named text log below a logs directory.
 
     global LOG_FID
 
@@ -6,8 +7,18 @@ function start_logging(logs_parent_dir)
 
     mkdirp(log_dir)        
 
-    current_date = char(datetime('now', 'Format', 'yyyy-MM-dd-HH-mm-ss'));
-    log_file = fullfile(log_dir, ['log_' current_date '.txt']);
+    if nargin < 2 || strlength(string(log_name)) == 0
+        log_name = string(datetime('now', ...
+            'Format', 'yyyy-MM-dd-HH-mm-ss-SSS'));
+    end
+    log_name = regexprep(string(log_name), '[^\w-]', '_');
+    base_name = "log_" + log_name;
+    log_file = fullfile(log_dir, base_name + ".txt");
+    suffix = 2;
+    while isfile(log_file)
+        log_file = fullfile(log_dir, base_name + "_" + suffix + ".txt");
+        suffix = suffix + 1;
+    end
 
     LOG_FID = fopen(log_file, 'w');
 
