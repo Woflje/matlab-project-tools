@@ -1,7 +1,7 @@
 function ll(varargin)
     % ll - Log only - logs to a file without printing to the console
 
-    global LOG_FID
+    global LOG_FID %#ok<*GVMIS>
 
     [shouldLog, args] = should_log(varargin{:});
 

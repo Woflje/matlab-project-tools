@@ -1,7 +1,7 @@
 function log_file = start_logging(logs_parent_dir, log_name)
     % Start a uniquely named text log below a logs directory.
 
-    global LOG_FID
+    global LOG_FID %#ok<*GVMIS>
 
     log_dir = fullfile(logs_parent_dir, 'logs');
 

@@ -5,7 +5,7 @@ function elapsed = pltoc(varargin)
 	%   pltoc('name')
 	%   pltoc('debug', 'name')
 
-    global PL_TIMERS
+    global PL_TIMERS %#ok<*GVMIS>
 
     if nargin == 1
         logArgs = {};
