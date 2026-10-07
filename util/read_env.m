@@ -1,5 +1,5 @@
-function value = read_env(key, defaultValue, envFile)
-	% Read value from .env file, OS env, or fallback default
+function [value, source] = read_env(key, defaultValue, envFile)
+	% Read value from .env file, OS environment, or fallback default.
 	%
 	% Usage:
 	%   data_dir = read_env("data_dir", "data")
@@ -11,6 +11,7 @@ function value = read_env(key, defaultValue, envFile)
 
     key = string(key);
     value = defaultValue;
+    source = "default";
 
     if isfile(envFile)
         lines = readlines(envFile);
@@ -22,17 +23,18 @@ function value = read_env(key, defaultValue, envFile)
                 continue;
             end
 
-            parts = split(line, "=", 2);
-
-            if numel(parts) ~= 2
+            separator = strfind(line, "=");
+            if isempty(separator)
                 continue;
             end
 
-            envKey = strtrim(parts(1));
-            envValue = strtrim(parts(2));
+            separator = separator(1);
+            envKey = strtrim(extractBefore(line, separator));
+            envValue = strtrim(extractAfter(line, separator));
 
             if envKey == key
                 value = strip_quotes(envValue);
+                source = "env-file";
                 return;
             end
         end
@@ -42,6 +44,7 @@ function value = read_env(key, defaultValue, envFile)
 
     if ~isempty(osValue)
         value = string(osValue);
+        source = "os-environment";
     end
 end
 
