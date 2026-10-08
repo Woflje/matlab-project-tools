@@ -9,7 +9,7 @@ function log_file = start_logging(logs_parent_dir, log_name)
 
     if nargin < 2 || strlength(string(log_name)) == 0
         log_name = string(datetime('now', ...
-            'Format', 'yyyy-MM-dd-HH-mm-ss-SSS'));
+            'Format', 'dd-MM-yyyy-HH-mm-ss-SSS'));
     end
     log_name = regexprep(string(log_name), '[^\w-]', '_');
     base_name = "log_" + log_name;
@@ -26,5 +26,5 @@ function log_file = start_logging(logs_parent_dir, log_name)
         error('Could not open log file: %s', log_file);
     end
 
-    pl('Logging started at %s\n', datetime('now', 'Format', 'yyyy-MM-dd-HH:mm:ss'));
+    pl('Logging started at %s\n', datetime('now', 'Format', 'dd-MM-yyyy-HH:mm:ss'));
 end
