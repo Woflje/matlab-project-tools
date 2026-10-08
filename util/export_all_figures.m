@@ -7,7 +7,9 @@ function exported_files = export_all_figures(export_dir, FigList)
     exported_files = strings(numel(FigList), 2);
 
     pl('Exporting figures to %s...\n', export_dir);
-    mkdir(export_dir);
+    if ~isfolder(export_dir)
+        mkdir(export_dir);
+    end
 
     for iFig = 1:length(FigList)
         FigHandle = FigList(iFig);
